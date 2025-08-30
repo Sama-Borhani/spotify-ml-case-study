@@ -17,8 +17,7 @@ An end-to-end machine learning case study exploring track-level Spotify data. Th
 - [Dataset](#dataset)
 - [Examples](#examples)
 - [Limitations & Future Work](#limitations--future-work)
-- [Contributors](#contributors)
-- [License](#license)
+
 
 ---
 
