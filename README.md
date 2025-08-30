@@ -41,8 +41,8 @@ spotify-ml-case-study/
 ├─ requirements.txt
 ├─ environment.yml
 ├─ data/
-│  ├─ raw/              
-│  └─ processed/       
+│  └─ raw/              
+│    
 ├─ notebooks/           
 ├─ reports/
 │  ├─ figures/          
