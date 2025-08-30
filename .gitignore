@@ -1,0 +1,33 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+
+# Virtual environments
+.env/
+.venv/
+venv/
+env/
+
+# OS files
+.DS_Store
+
+# Data & outputs (keep raw out of Git)
+data/raw/
+data/processed/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Reports (keep figures but allow markdown)
+reports/figures/
+!reports/figures/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# Conda
+*.conda
+*.lock
