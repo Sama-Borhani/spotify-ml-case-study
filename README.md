@@ -35,16 +35,16 @@ The case study demonstrates practical use of regression, classification, and uns
 
 ##  Project Structure
 
-```text
+
 spotify-ml-case-study/
 ├─ README.md
 ├─ .gitignore
 ├─ requirements.txt
 ├─ environment.yml
 ├─ data/
-│  ├─ raw/              # Raw dataset (not included in repo)
-│  └─ processed/        # Cleaned & feature-engineered data
-├─ notebooks/           # Jupyter notebooks for EDA & modeling
+│  ├─ raw/              
+│  └─ processed/        
+├─ notebooks/           
 ├─ reports/
 │  ├─ figures/          # Visualizations like ROC curves, boxplots
 │  └─ results.md        # Summary of model metrics
