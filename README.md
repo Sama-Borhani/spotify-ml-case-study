@@ -1,7 +1,7 @@
 
-# Spotify ML Case Study 
+# Spotify ML Case Study 🎧
 
-An end-to-end machine learning case study exploring track-level Spotify data. This project focuses on understanding audio features to model collaborative tracks, studying the impact of hit songs on albums, and building a basic music recommendation system using unsupervised learning.
+An end-to-end machine learning case study exploring track-level Spotify data. This project focuses on understanding audio features to model collaborative tracks, study the impact of hit songs on albums, and build a basic music recommendation system using unsupervised learning.
 
 ##  Table of Contents
 
@@ -35,7 +35,7 @@ The case study demonstrates practical use of regression, classification, and uns
 
 ##  Project Structure
 
-
+```text
 spotify-ml-case-study/
 ├─ README.md
 ├─ .gitignore
@@ -43,21 +43,21 @@ spotify-ml-case-study/
 ├─ environment.yml
 ├─ data/
 │  ├─ raw/              
-│  └─ processed/        
+│  └─ processed/       
 ├─ notebooks/           
 ├─ reports/
-│  ├─ figures/          # Visualizations like ROC curves, boxplots
-│  └─ results.md        # Summary of model metrics
+│  ├─ figures/          
+│  └─ results.md        
 ├─ references/
-│  └─ dataset.md        # Dataset link & schema notes
+│  └─ dataset.md       
 └─ src/
-   ├─ data_prep.py             # Data cleaning and feature engineering
-   ├─ eda.py                   # Exploratory Data Analysis functions
+   ├─ data_prep.py             
+   ├─ eda.py                  
    ├─ modeling/
-   │  ├─ logistic_collab.py    # Logistic regression model
-   │  └─ random_forest_collab.py  # Random forest model
+   │  ├─ logistic_collab.py    
+   │  └─ random_forest_collab.py  
    └─ recommend/
-      └─ knn_similar_tracks.py # KNN-based recommendation engine
+      └─ knn_similar_tracks.py 
 ````
 
 ---
