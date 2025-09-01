@@ -20,13 +20,11 @@ spotify-ml-case-study/
 ├─ requirements.txt
 ├─ environment.yml
 ├─ data/
-│  └─ raw/              
+│  └─ raw.csv/              
 ├─ notebooks/           
 ├─ reports/
 │  ├─ figures/         
-│  └─ results.md        
-├─ references/
-│  └─ dataset.md      
+│  └─ final_report.md             
 └─ src/
 ├─ data\_prep.py            
 ├─ eda.py                    
