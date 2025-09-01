@@ -20,21 +20,21 @@ spotify-ml-case-study/
 ├─ requirements.txt
 ├─ environment.yml
 ├─ data/
-│  └─ raw/              # raw CSV dataset (not versioned)
-├─ notebooks/           # Jupyter notebooks for exploration
+│  └─ raw/              
+├─ notebooks/           
 ├─ reports/
-│  ├─ figures/          # saved histograms, plots
-│  └─ results.md        # model metrics + recommendations
+│  ├─ figures/         
+│  └─ results.md        
 ├─ references/
-│  └─ dataset.md        # dataset source + schema notes
+│  └─ dataset.md      
 └─ src/
-├─ data\_prep.py              # clean + feature engineer
-├─ eda.py                    # simple histograms
+├─ data\_prep.py            
+├─ eda.py                    
 ├─ modeling/
-│  ├─ logistic\_collab.py     # baseline logistic regression
-│  └─ random\_forest\_collab.py# stronger RF classifier
+│  ├─ logistic\_collab.py    
+│  └─ random\_forest\_collab.py
 └─ recommend/
-└─ knn\_similar\_tracks.py  # nearest-neighbor similarity
+└─ knn\_similar\_tracks.py  
 
 ````
 
