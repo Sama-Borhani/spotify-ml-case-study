@@ -1,196 +1,145 @@
 
 # Spotify ML Case Study 🎧
 
-An end-to-end machine learning case study exploring track-level Spotify data. This project focuses on understanding audio features to model collaborative tracks, study the impact of hit songs on albums, and build a basic music recommendation system using unsupervised learning.
-
-##  Table of Contents
-
-- [Introduction](#introduction)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Models](#models)
-- [Results](#results)
-- [Dependencies](#dependencies)
-- [Configuration](#configuration)
-- [Dataset](#dataset)
-- [Examples](#examples)
-- [Limitations & Future Work](#limitations--future-work)
-
-
----
-
-##  Introduction
-
-This project investigates Spotify’s audio feature dataset through data cleaning, visualization, and predictive modeling. The main goals include:
-- Understanding if a hit song boosts popularity for other album tracks.
-- Predicting artist collaborations using classification models.
-- Building a song recommender based on audio similarity.
-
-The case study demonstrates practical use of regression, classification, and unsupervised learning in music intelligence.
+_A clean, reproducible ML repo analyzing track-level Spotify audio features to:_
+1. Test whether a hit track lifts an album’s popularity.  
+2. Predict collaborations using classification models.  
+3. Build a simple KNN-based “similar tracks” recommendation demo.
 
 ---
 
 ##  Project Structure
+```
 
-```text
 spotify-ml-case-study/
 ├─ README.md
+├─ LICENSE
 ├─ .gitignore
 ├─ requirements.txt
 ├─ environment.yml
+├─ pyproject.toml
+├─ pre-commit-config.yaml
+├─ .github/workflows/ci.yml
 ├─ data/
-│  └─ raw/              
-│    
-├─ notebooks/           
+│  ├─ raw/              # raw dataset (git-ignored)
+│  └─ processed/        # cleaned & feature-engineered data
+├─ notebooks/           # exploratory notebooks
 ├─ reports/
-│  ├─ figures/          
-│  └─ results.md        
+│  ├─ figures/          # saved plots
+│  └─ results.md        # summary of metrics
 ├─ references/
-│  └─ dataset.md       
-└─ src/
-   ├─ data_prep.py             
-   ├─ eda.py                  
-   ├─ modeling/
-   │  ├─ logistic_collab.py    
-   │  └─ random_forest_collab.py  
-   └─ recommend/
-      └─ knn_similar_tracks.py 
+│  └─ dataset.md        # dataset info + schema
+├─ src/
+│  └─ spotify\_ml/
+│     ├─ **init**.py
+│     ├─ config.py
+│     ├─ paths.py
+│     ├─ data\_prep.py
+│     ├─ eda.py
+│     ├─ modeling/
+│     │  ├─ logistic\_collab.py
+│     │  └─ random\_forest\_collab.py
+│     └─ recommend/
+│        └─ knn\_similar\_tracks.py
+└─ tests/
+├─ test\_imports.py
+└─ test\_smoke.py
+
 ````
 
 ---
 
-##  Installation
+##  Quickstart
 
-You can install the required dependencies using either:
-
-### Option 1: Conda
-
+### Option A — Conda
 ```bash
 conda env create -f environment.yml
 conda activate spotify-ml
-```
+pre-commit install
+````
 
-### Option 2: Pip
+### Option B — venv + pip
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+pre-commit install
 ```
 
 ---
 
 ##  Usage
 
-### Run Data Preparation
+### 1. Data prep
 
 ```bash
-python src/data_prep.py
+python -m spotify_ml.data_prep --in data/raw/dataset.csv --out data/processed/clean.parquet
 ```
 
-### Run EDA
+### 2. Modeling
 
 ```bash
-python src/eda.py
+# Logistic regression baseline
+python -m spotify_ml.modeling.logistic_collab --data data/processed/clean.parquet --out reports/results.md
+
+# Random forest classifier
+python -m spotify_ml.modeling.random_forest_collab --data data/processed/clean.parquet --out reports/results.md
 ```
 
-### Train Models
+### 3. Recommendations
 
 ```bash
-python src/modeling/logistic_collab.py
-python src/modeling/random_forest_collab.py
-```
-
-### Recommend Similar Songs
-
-```bash
-python src/recommend/knn_similar_tracks.py
+python -m spotify_ml.recommend.knn_similar_tracks \
+  --data data/processed/clean.parquet \
+  --track "Bad Guy" \
+  --k 10 \
+  --out reports/results.md
 ```
 
 ---
 
-##  Features
+##  Results (highlights)
 
-* Cleans and engineers features like song duration, collaboration flag, and key mappings.
-* Visual diagnostics: boxplots, Q-Q plots, Box-Cox transformations.
-* Statistical analysis of collaboration patterns.
-* Classification models with hyperparameter tuning.
-* Song similarity search using KNN.
+* **Album Lift (OLS):** weak/insignificant — little evidence that a hit boosts other album tracks.
+* **Collaboration Prediction:**
 
----
-
-##  Models
-
-| Model               | Purpose                       | AUC Score | Notes                   |
-| ------------------- | ----------------------------- | --------- | ----------------------- |
-| Linear Regression   | Impact of hit songs on albums | \~0.01 R² | Weak relationship found |
-| Logistic Regression | Predict collaborations        | \~0.63    | Regularized, polynomial |
-| Random Forest       | Predict collaborations        | \~0.90    | Best performer          |
-| K-Nearest Neighbors | Recommend similar tracks      | N/A       | Exploratory recommender |
+  * Logistic Regression → AUC \~0.63
+  * Random Forest → AUC \~0.90 (danceability & acousticness key features)
+* **KNN Recommender:** returns intuitive “similar track” lists based on audio features.
 
 ---
 
-##  Results
+##  Reproducibility & Quality
 
-* **Random Forest** outperformed all classifiers with an AUC \~0.90.
-* **Logistic Regression** had moderate success with \~0.63 AUC.
-* **Linear Regression** did not support the hypothesis that hits improve sibling track popularity.
-* KNN model demonstrated practical usage of unsupervised learning.
-
----
-
-##  Dependencies
-
-Key libraries used:
-
-* `pandas`, `numpy`, `matplotlib`, `seaborn`
-* `scikit-learn`, `statsmodels`, `scipy`
-* `jupyterlab` or `notebook` for interactive analysis
-
-For full list, see [`requirements.txt`](requirements.txt) or [`environment.yml`](environment.yml).
+* **Formatting / Linting:** black, ruff, isort
+* **Type checking:** mypy (optional)
+* **Pre-commit hooks:** auto-format on commit
+* **Continuous Integration:** GitHub Actions runs lint + tests on push/PR
 
 ---
 
-## Configuration
+##  Data
 
-* All data preprocessing scripts and feature transformation logic are centralized in `src/data_prep.py`.
-* Modeling parameters are defined inside each model script.
-* Class balancing and scaling handled within modeling pipelines.
-
----
-
-##  Dataset
-
-* Spotify Tracks Dataset
-* \~114,000 tracks with features like:
-
-  * `danceability`, `energy`, `liveness`, `valence`, etc.
-* [Reference and schema notes here](references/dataset.md)
-
-**Note**: Raw dataset is excluded from the repo due to size constraints.
+* Source: Spotify audio features dataset (track-level).
+* Features include: danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, etc.
+* Large datasets should be placed in `data/` but kept **out of git**.
 
 ---
 
-##  Examples
+##  Contributing
 
-* ROC curve comparison between Logistic Regression and Random Forest
-* Feature importance from Random Forest
-* Distribution plots for popularity, tempo, and more
-* Residual plots for linear and weighted regression
+* Fork → branch → PR.
+* Run `pre-commit` locally before committing.
+* Keep functions <100 lines, include docstrings & type hints.
 
 ---
 
-##  Limitations & Future Work
+##  License
 
-* **Limitations**:
+MIT — see [LICENSE](LICENSE) for details.
 
-  * Class imbalance required resampling
-  * Model assumptions not always satisfied
-  * Dataset excluded listener behavior and release timing
+```
 
-* **Future Directions**:
-
-  * Include sentiment or lyric embeddings
-  * Explore deep learning and sequential models
-  * Use listener play counts or temporal trends
+---
 
