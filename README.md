@@ -31,7 +31,7 @@ spotify-ml-case-study/
 │  └─ dataset.md        # dataset info + schema
 ├─ src/
 │  └─ spotify\_ml/
-│     ├─ **init**.py
+│     ├─ init.py
 │     ├─ config.py
 │     ├─ paths.py
 │     ├─ data\_prep.py
