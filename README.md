@@ -139,12 +139,9 @@ Appends a list of the *k* most similar tracks by numeric audio features.
 * See `references/dataset.md` for provenance & schema.
 * This project uses the [Spotify Tracks Dataset](https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset) hosted on Hugging Face 🤗.  
 The dataset contains track-level audio features (danceability, energy, loudness, speechiness, acousticness, etc.) along with metadata such as track name, artist(s), and album.  
-
 For this repository, a raw CSV file is placed in `data/` 
 For full details, feature descriptions, and the complete dataset, please refer to the [Hugging Face dataset page](https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset).
 ---
 
-##  Contributing
 
-This is a personal case study project. Issues and suggestions are welcome.
 
