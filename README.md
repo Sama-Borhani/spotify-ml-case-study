@@ -21,14 +21,14 @@ spotify-ml-case-study/
 ├─ pre-commit-config.yaml
 ├─ .github/workflows/ci.yml
 ├─ data/
-│  ├─ raw/              # raw dataset (git-ignored)
-│  └─ processed/        # cleaned & feature-engineered data
-├─ notebooks/           # exploratory notebooks
+│  ├─ raw/              
+│  └─ processed/        
+├─ notebooks/           
 ├─ reports/
-│  ├─ figures/          # saved plots
-│  └─ results.md        # summary of metrics
+│  ├─ figures/          
+│  └─ results.md        
 ├─ references/
-│  └─ dataset.md        # dataset info + schema
+│  └─ dataset.md        
 ├─ src/
 │  └─ spotify\_ml/
 │     ├─ init.py
