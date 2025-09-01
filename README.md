@@ -140,6 +140,8 @@ The dataset contains track-level audio features (danceability, energy, loudness,
 For this repository, a raw CSV file is placed in `data/` 
 For full details, feature descriptions, and the complete dataset, please refer to the [Hugging Face dataset page](https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset).
 ---
+##  License
 
+This project is licensed under the terms of the [MIT License](LICENSE).
 
 
